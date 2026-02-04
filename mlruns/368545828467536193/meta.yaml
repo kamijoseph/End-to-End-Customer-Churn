@@ -1,0 +1,6 @@
+artifact_location: file:///home/kami/Projects/End to End Customer Churn Project/mlruns/368545828467536193
+creation_time: 1770190086488
+experiment_id: '368545828467536193'
+last_update_time: 1770190086488
+lifecycle_stage: active
+name: Telco Churn - XGBoost

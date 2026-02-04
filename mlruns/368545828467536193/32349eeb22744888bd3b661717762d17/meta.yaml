@@ -1,0 +1,14 @@
+artifact_uri: file:///home/kami/Projects/End to End Customer Churn Project/mlruns/368545828467536193/32349eeb22744888bd3b661717762d17/artifacts
+end_time: 1770190103067
+entry_point_name: ''
+experiment_id: '368545828467536193'
+lifecycle_stage: active
+run_id: 32349eeb22744888bd3b661717762d17
+run_name: delightful-panda-266
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770190087046
+status: 3
+tags: []
+user_id: kami
