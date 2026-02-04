@@ -45,3 +45,6 @@ def _map_binary_series(s: pd.Series) -> pd.Series:
         return s.astype(str).map(mapping).astype("Int64")
     
     return s
+
+def build_features(data: pd.DataFrame) -> pd.DataFrame:
+    pass
