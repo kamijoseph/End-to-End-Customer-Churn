@@ -1,0 +1,16 @@
+
+__pycache__
+*.pyc
+.venv
+.git
+.github
+mlruns
+geat_expectations
+great_expectations
+research
+tests
+.pytest_cache
+*.md
+docker
+scripts
+configs

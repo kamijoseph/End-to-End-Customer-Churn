@@ -1,0 +1,4 @@
+artifact_location: file:///home/kami/Projects/End%20to%20End%20Customer%20Churn%20Project/mlruns/368545828467536194
+experiment_id: '368545828467536194'
+lifecycle_stage: active
+name: Customer_Churn_Prediction

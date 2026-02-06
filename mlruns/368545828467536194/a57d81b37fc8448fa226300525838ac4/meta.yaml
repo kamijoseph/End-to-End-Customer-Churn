@@ -1,0 +1,15 @@
+artifact_uri: file:///home/kami/Projects/End%20to%20End%20Customer%20Churn%20Project/mlruns/368545828467536194/a57d81b37fc8448fa226300525838ac4/artifacts
+end_time: 1770372285991
+entry_point_name: ''
+experiment_id: '368545828467536194'
+lifecycle_stage: active
+name: ''
+run_id: a57d81b37fc8448fa226300525838ac4
+run_uuid: a57d81b37fc8448fa226300525838ac4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770372279885
+status: 3
+tags: []
+user_id: kami
