@@ -91,3 +91,29 @@ def _serve_transform(data: pd.DataFrame) -> pd.DataFrame:
     data = data.reindex(columns=FEATURE_COLS, fill_value=0)
     
     return data
+
+def predict(input_dict: dict) -> str:
+    data = pd.DataFrame([input_dict])
+    data_enc = _serve_transform(data)
+
+    try:
+        preds = model.predict(data_enc)
+        
+        # normalize prediction output to consistent format
+        if hasattr(preds, "tolist"):
+            preds = preds.tolist()  # Convert numpy array to list
+            
+        # extract single prediction value (for single-row input)
+        if isinstance(preds, (list, tuple)) and len(preds) == 1:
+            result = preds[0]
+        else:
+            result = preds
+            
+    except Exception as e:
+        raise Exception(f"Model prediction failed: {e}")
+    
+    # convert binary prediction (0/1) to actionable business language
+    if result == 1:
+        return "Likely to churn" 
+    else:
+        return "Not likely to churn" 
