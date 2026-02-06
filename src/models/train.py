@@ -26,3 +26,13 @@ def train_model(data: pd.DataFrame, target_column:str):
         test_size = 0.2,
         random_state = 21
     )
+
+    # model initialization
+    model = XGBClassifier(
+        n_estimators = 300,
+        learning_rate = 0.1,
+        max_depth = 6,
+        random_state = 21,
+        n_jobs = -1,
+        eval_metric = "logloss"
+    )
