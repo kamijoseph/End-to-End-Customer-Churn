@@ -38,9 +38,56 @@ except Exception as e:
 
 # deterministic binary feature mappings (consistent with training)
 BINARY_MAP = {
-    "gender": {"Female": 0, "Male": 1},           # Demographics
-    "Partner": {"No": 0, "Yes": 1},               # Has partner
-    "Dependents": {"No": 0, "Yes": 1},            # Has dependents  
-    "PhoneService": {"No": 0, "Yes": 1},          # Phone service
-    "PaperlessBilling": {"No": 0, "Yes": 1},      # Billing preference
+    "gender": {"Female": 0, "Male": 1}, 
+    "Partner": {"No": 0, "Yes": 1},  
+    "Dependents": {"No": 0, "Yes": 1},     
+    "PhoneService": {"No": 0, "Yes": 1},   
+    "PaperlessBilling": {"No": 0, "Yes": 1}, 
 }
+
+NUMERIC_COLS = ["tenure", "MonthlyCharges", "TotalCharges"]
+
+def _serve_transform(data: pd.DataFrame) -> pd.DataFrame:
+
+    """
+    apply identical feature transformation as used during training
+    
+    :param data: Description
+    :type data: pd.DataFrame
+    :return: Description
+    :rtype: DataFrame
+    """
+
+    data = data.copy()
+    data.columns = data.columns.str.strip()
+
+    # ensure numeric columns are properly typed (handle string inputs)
+    for c in NUMERIC_COLS:
+        if c in data.columns:
+            data[c] = pd.to_numeric(data[c], errors="coerce")
+            data[c] = data[c].fillna(0)
+    
+    # apply deterministic mappings for binary features
+    for c, mapping in BINARY_MAP.items():
+        if c in data.columns:
+            data[c] = (
+                data[c]
+                .astype(str)                   
+                .str.strip()                 
+                .map(mapping)               
+                .astype("Int64")               
+                .fillna(0)                     
+                .astype(int)
+            )
+    
+    obj_cols = [c for c in data.select_dtypes(include=["object"]).columns]
+    if obj_cols:
+        data = pd.get_dummies(data, columns=obj_cols, drop_first=True)
+    
+    bool_cols = data.select_dtypes(include=["bool"]).columns
+    if len(bool_cols) > 0:
+        data[bool_cols] = data[bool_cols].astype(int)
+
+    data = data.reindex(columns=FEATURE_COLS, fill_value=0)
+    
+    return data
