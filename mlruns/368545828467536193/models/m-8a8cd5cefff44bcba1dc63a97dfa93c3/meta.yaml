@@ -1,0 +1,10 @@
+artifact_location: file:///home/kami/Projects/End to End Customer Churn Project/mlruns/368545828467536193/models/m-8a8cd5cefff44bcba1dc63a97dfa93c3/artifacts
+creation_timestamp: 1770371270902
+experiment_id: '368545828467536193'
+last_updated_timestamp: 1770371283101
+model_id: m-8a8cd5cefff44bcba1dc63a97dfa93c3
+model_type: null
+name: model
+source_run_id: ff4226a9db814c8bb2290a8965279a69
+status: 2
+status_message: null

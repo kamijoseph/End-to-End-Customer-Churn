@@ -1,0 +1,14 @@
+artifact_uri: file:///home/kami/Projects/End to End Customer Churn Project/mlruns/368545828467536193/ff4226a9db814c8bb2290a8965279a69/artifacts
+end_time: 1770371283149
+entry_point_name: ''
+experiment_id: '368545828467536193'
+lifecycle_stage: active
+run_id: ff4226a9db814c8bb2290a8965279a69
+run_name: dazzling-hare-762
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770371269917
+status: 3
+tags: []
+user_id: kami
