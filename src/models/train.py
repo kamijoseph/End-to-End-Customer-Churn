@@ -55,3 +55,16 @@ def train_model(data: pd.DataFrame, target_column:str):
         mlflow.log_metric("accuracy", acc)
         mlflow.log_metrics("recall", rec_score)
         mlflow.xgboost.log_model(model, "model")
+
+        train_ds = mlflow.data.from_pandas(
+            data,
+            source = "training_data"
+        )
+        mlflow.log_input(
+            train_ds,
+            context = "training"
+        )
+
+        print(
+            f"model trained. accuracy: {acc:.4f}, recall: {rec_score:.4f}"
+        )
