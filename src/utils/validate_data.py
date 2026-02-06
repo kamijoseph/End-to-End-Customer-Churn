@@ -57,3 +57,12 @@ def validate_telco_data(data: pd.DataFrame) -> Tuple[bool, List[str]]:
         "InternetService",
         ["DSL", "Fiber optic", "No"]
     )
+
+    # tenure must be non-negative (business logic - can't have negative tenure)
+    ge_df.expect_column_values_to_be_between("tenure", min_value=0)
+    
+    # monthly charges must be positive (business logic - no free service)
+    ge_df.expect_column_values_to_be_between("MonthlyCharges", min_value=0)
+    
+    # total charges should be non-negative (business logic)
+    ge_df.expect_column_values_to_be_between("TotalCharges", min_value=0)
