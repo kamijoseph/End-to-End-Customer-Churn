@@ -37,3 +37,23 @@ def validate_telco_data(data: pd.DataFrame) -> Tuple[bool, List[str]]:
     ge_df.expect_column_to_exist("tenure")
     ge_df.expect_column_to_exist("MonthlyCharges")
     ge_df.expect_column_to_exist("TotalCharges")
+
+    # gender must be one of expected values (data integrity)
+    ge_df.expect_column_values_to_be_in_set("gender", ["Male", "Female"])
+    
+    # Yes/No fields must have valid values
+    ge_df.expect_column_values_to_be_in_set("Partner", ["Yes", "No"])
+    ge_df.expect_column_values_to_be_in_set("Dependents", ["Yes", "No"])
+    ge_df.expect_column_values_to_be_in_set("PhoneService", ["Yes", "No"])
+    
+    # contract types must be valid (business constraint)
+    ge_df.expect_column_values_to_be_in_set(
+        "Contract", 
+        ["Month-to-month", "One year", "Two year"]
+    )
+    
+    # internet service types (business constraint)
+    ge_df.expect_column_values_to_be_in_set(
+        "InternetService",
+        ["DSL", "Fiber optic", "No"]
+    )
