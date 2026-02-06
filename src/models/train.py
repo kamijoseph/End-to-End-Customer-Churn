@@ -36,3 +36,22 @@ def train_model(data: pd.DataFrame, target_column:str):
         n_jobs = -1,
         eval_metric = "logloss"
     )
+
+    with mlflow.start_run():
+
+        # train model
+        model.fit(
+            X_train,
+            y_train
+        )
+
+        # prediction
+        y_pred = model.predict(X_test)
+        acc = accuracy_score(y_test, y_pred)
+        rec_score = recall_score(y_test, y_pred)
+
+        # log params, metrics, and model
+        mlflow.log_param("n_estimators", 300)
+        mlflow.log_metric("accuracy", acc)
+        mlflow.log_metrics("recall", rec_score)
+        mlflow.xgboost.log_model(model, "model")
