@@ -98,3 +98,72 @@ Includes unit tests for transformers and integration tests for the API.
 5. **Services**: Built FastAPI and Gradio apps sharing the `Predictor` class.
 6. **Containerization**: Created `Dockerfile`.
 7. **Verification**: Added `pytest` suite and verified 92.5% recall, matching research.
+
+
+
+
+
+# englig
+Walkthrough
+9 minutes ago
+
+Review
+Churn Prediction System Walkthrough
+I have successfully reconstructed the Churn Prediction System based on the 
+research/EDA.ipynb
+ baseline. The system is production-ready, modular, and fully containerized.
+
+🏆 Key Achievements
+Recall Score: 0.925 (Matches research baseline).
+Reproducibility: Fixed random seeds, stratified splits, and exact Optuna hyperparameters.
+Pipeline: Clean separation of data_loader, 
+preprocessing
+, 
+train
+, and 
+predict
+.
+Infrastructure: FastAPI service, Gradio UI, and Docker containerization.
+Tracking: Integrated MLflow for experiment tracking and artifact management.
+📂 Repository Structure
+src/: Core application logic (config, data loading, preprocessing, training, inference).
+models/: Persisted model artifacts (xgb_model.pkl, preprocessor.pkl).
+app.py
+: FastAPI inference service.
+ui.py
+: Gradio web interface.
+tasks.md
+: Detailed project documentation.
+🚀 Quick Start
+1. Training
+Run the training pipeline to generate artifacts:
+
+bash
+uv run python -m src.train
+2. Run API
+Start the FastAPI service:
+
+bash
+uv run uvicorn app:app --reload
+Test it: curl http://localhost:8000/health
+
+3. Run UI
+Start the Gradio demo:
+
+bash
+uv run python ui.py
+Open browser at http://localhost:7860.
+
+4. Docker
+Build and run the container:
+
+bash
+docker build -t churn-prediction .
+docker run -p 8000:8000 -p 7860:7860 churn-prediction
+✅ Verification
+Automated tests have been implemented and passed:
+
+Unit tests for preprocessing logic.
+Integration tests for the predictor and API. Run tests with:
+bash
+uv run python -m pytest
