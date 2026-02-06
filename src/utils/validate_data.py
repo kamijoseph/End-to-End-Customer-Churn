@@ -27,3 +27,13 @@ def validate_telco_data(data: pd.DataFrame) -> Tuple[bool, List[str]]:
     ge_df.expect_column_to_exist("gender") 
     ge_df.expect_column_to_exist("Partner")
     ge_df.expect_column_to_exist("Dependents")
+
+    # service features (critical for churn analysis)
+    ge_df.expect_column_to_exist("PhoneService")
+    ge_df.expect_column_to_exist("InternetService")
+    ge_df.expect_column_to_exist("Contract")
+    
+    # financial features (key churn predictors)
+    ge_df.expect_column_to_exist("tenure")
+    ge_df.expect_column_to_exist("MonthlyCharges")
+    ge_df.expect_column_to_exist("TotalCharges")
